@@ -3,6 +3,7 @@ import cookieParser from "cookie-parser"
 import dotenv from "dotenv"
 import authRoutes from "./routes/auth.routes"
 import uploadRoutes from "./routes/upload.routes"
+import userRoutes from "./routes/user.routes"
 
 dotenv.config();
 
@@ -15,6 +16,7 @@ app.use(cookieParser());
 
 app.use('/api', authRoutes);
 app.use('/api', uploadRoutes);
+app.use('/api', userRoutes);
 
 app.get("/health", (_req, res) => {
     res.json({ ok: true, message: "Server running" });
