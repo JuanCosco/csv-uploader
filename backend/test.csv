@@ -1,0 +1,5 @@
+name,email,age
+Juan Perez,juan@example.com,28
+Maria Garcia,maria@example.com,25
+,invalid-email,0
+Pedro Lopez,pedro@example.com,
