@@ -12,7 +12,6 @@ export const login = async (req: Request, res: Response) => {
 
     try {
         const token = await loginService(parsed.data);
-        console.log('Token generado:', token);
 
         res.cookie('token', token, {
             httpOnly: true,
@@ -20,6 +19,7 @@ export const login = async (req: Request, res: Response) => {
             maxAge: 8 * 60 * 60 * 1000,
         });
 
+        console.log('[AUTH] Cookie set - login successful');
         res.json({ ok: true, message: 'Login exitoso' });
     } catch (error) {
         console.log('Error capturado:', error);

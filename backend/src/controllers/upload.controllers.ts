@@ -7,6 +7,8 @@ export const uploadCSV = async (req: Request, res: Response) => {
         return;
     }
 
+    console.log(`[UPLOAD] File received - ${req.file.originalname} (${req.file.size} bytes)`);
+
     try {
         const result = await processCSV(req.file.buffer);
         res.json({ ok: true, data: result });
