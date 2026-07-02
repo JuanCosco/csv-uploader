@@ -7,6 +7,7 @@ export interface SuccessRecord {
 
 export interface ErrorRecord {
     row: number;
+    values: Record<string, string>
     details: Record<string, string>
 }
 

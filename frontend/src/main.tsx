@@ -3,6 +3,7 @@ import { createRoot } from 'react-dom/client'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Login from './pages/login.tsx'
 import Upload from './pages/upload.tsx'
+import Results from './pages/results.tsx'
 import ProtectedRoute from './components/ProtectedRoute.tsx'
 
 createRoot(document.getElementById('root')!).render(
@@ -10,9 +11,14 @@ createRoot(document.getElementById('root')!).render(
     <BrowserRouter>
       <Routes>
         <Route path='/login' element={<Login />} />
-        <Route path='/' element= {
+        <Route path='/' element={
           <ProtectedRoute>
             <Upload />
+          </ProtectedRoute>
+        } />
+        <Route path="/results" element={
+          <ProtectedRoute>
+            <Results />
           </ProtectedRoute>
         } />
       </Routes>
