@@ -11,6 +11,7 @@ interface SuccessRecord {
 
 interface ErrorRecord {
     row: Number;
+    values: Record<string, string>;  // ← valores originales
     details: Record<string, string>;
 }
 
@@ -40,7 +41,11 @@ export const processCSV = async (buffer: Buffer) => {
                 details[field] = issue.message;
             }
             console.log(`[UPLOAD] Row ${rowNumber} - INVALID →`, details);
-            errors.push({ row: rowNumber, details });
+            errors.push({
+                row: rowNumber,
+                values: row as Record<string, string>,
+                details
+            });
             continue;
         }
 
@@ -56,6 +61,7 @@ export const processCSV = async (buffer: Buffer) => {
             console.log(`[UPLOAD] Row ${rowNumber} - DB ERROR → duplicate email`);
             errors.push({
                 row: rowNumber,
+                values: row as Record<string, string>,
                 details: { email: 'El email ya existe en la base de datos' },
             });
         }
