@@ -36,3 +36,10 @@ export const correctRow = async (data: {
 
     return res.json()
 }
+
+export const getMe = async () => {
+    const res = await fetch(`${BASE_URL}/me`, {
+        credentials: 'include',
+    });
+    return res.json();
+}
