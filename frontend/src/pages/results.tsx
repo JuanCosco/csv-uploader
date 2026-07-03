@@ -22,7 +22,7 @@ export default function Results() {
                 {/* Exitosos */}
                 <div className="bg-white rounded-2xl shadow-md p-6 mb-6">
                     <h2 className="text-lg font-semibold text-gray-700 mb-4">
-                        ✅ Exitosos ({result.success.length})
+                        Exitosos ({result.success.length})
                     </h2>
                     <SuccessTable records={result.success} />
                 </div>
@@ -30,7 +30,7 @@ export default function Results() {
                 {/* Errores */}
                 <div className="bg-white rounded-2xl shadow-md p-6">
                     <h2 className="text-lg font-semibold text-gray-700 mb-4">
-                        ❌ Errores ({result.errors.length})
+                        Errores ({result.errors.length})
                     </h2>
 
                     {result.errors.length === 0 ? (
