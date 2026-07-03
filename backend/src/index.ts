@@ -1,19 +1,17 @@
 import express from "express"
 import cookieParser from "cookie-parser"
 import dotenv from "dotenv"
+import cors from 'cors'
 import authRoutes from "./routes/auth.routes"
 import uploadRoutes from "./routes/upload.routes"
 import userRoutes from "./routes/user.routes"
-import cors from 'cors'
 
 dotenv.config();
 
 const app = express();
 
-const PORT = process.env.PORT || 3000;
-
 app.use(cors({
-    origin: 'http://localhost:5173',
+    origin: ['http://localhost:5173', 'http://127.0.0.1:5173'],
     credentials: true,
 }));
 
@@ -29,8 +27,5 @@ app.get("/health", (_req, res) => {
     res.json({ ok: true, message: "Server running" });
 });
 
-app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
-});
 
 export default app;
