@@ -24,18 +24,35 @@ export default function Upload() {
     }
 
     return (
-        <div style={{ maxWidth: 400, margin: '100px auto', padding: 24 }}>
-            <h1>Upload CSV</h1>
+        <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+            <div className="bg-white rounded-2xl shadow-md p-10 w-full max-w-md">
 
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-                <input
-                    type="file"
-                    accept=".csv"
-                    onChange={e => setFile(e.target.files?.[0] ?? null)}
-                />
-                <button onClick={handleUpload} disabled={!file || loading}>
-                    {loading ? 'Cargando...' : ' Upload File'}
-                </button>
+                <h1 className="text-3xl font-bold text-gray-800 mb-2">Cargar CSV</h1>
+                <p className="text-gray-500 mb-8">Selecciona un archivo CSV para procesar</p>
+
+                <div className="flex flex-col gap-4">
+                    <label className="flex flex-col items-center justify-center w-full h-36 border-2 border-dashed border-gray-300 rounded-xl cursor-pointer hover:border-blue-400 hover:bg-blue-50 transition-colors">
+                        {file ? (
+                            <span className="text-sm font-medium text-blue-600">{file.name}</span>
+                        ) : (
+                            <span className="text-sm text-gray-500">Click para seleccionar archivo</span>
+                        )}
+                        <input
+                            type="file"
+                            accept=".csv"
+                            className="hidden"
+                            onChange={e => setFile(e.target.files?.[0] ?? null)}
+                        />
+                    </label>
+
+                    <button
+                        onClick={handleUpload}
+                        disabled={!file || loading}
+                        className="w-full bg-blue-600 hover:bg-blue-700 disabled:bg-gray-300 disabled:cursor-not-allowed text-white font-semibold rounded-lg py-2 transition-colors"
+                    >
+                        {loading ? 'Procesando...' : 'Upload File'}
+                    </button>
+                </div>
             </div>
         </div>
     )
