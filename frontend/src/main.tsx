@@ -5,6 +5,7 @@ import Login from './pages/login.tsx'
 import Upload from './pages/upload.tsx'
 import Results from './pages/results.tsx'
 import ProtectedRoute from './components/ProtectedRoute.tsx'
+import './index.css'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
