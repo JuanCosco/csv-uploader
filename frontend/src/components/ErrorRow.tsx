@@ -26,6 +26,21 @@ export default function ErrorRow({ error }: Props) {
         setStatus('success')
     }
 
+    const handleNameChange = (value: string) => {
+        setName(value)
+        setErrors(prev => ({ ...prev, name: '' }))
+    }
+
+    const handleEmailChange = (value: string) => {
+        setEmail(value)
+        setErrors(prev => ({ ...prev, email: '' }))
+    }
+
+    const handleAgeChange = (value: string) => {
+        setAge(value)
+        setErrors(prev => ({ ...prev, age: '' }))
+    }
+
     if (status === 'success') {
         return (
             <tr className="border-b border-gray-100">
@@ -46,7 +61,7 @@ export default function ErrorRow({ error }: Props) {
             <td className="py-3 pr-4">
                 <input
                     value={name}
-                    onChange={e => setName(e.target.value)}
+                    onChange={e => handleNameChange(e.target.value)}
                     className={`w-full border rounded-lg px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400 ${errors.name ? 'border-red-400 bg-red-50' : 'border-gray-300'
                         }`}
                     placeholder="Name"
@@ -60,7 +75,7 @@ export default function ErrorRow({ error }: Props) {
             <td className="py-3 pr-4">
                 <input
                     value={email}
-                    onChange={e => setEmail(e.target.value)}
+                    onChange={e => handleEmailChange(e.target.value)}
                     className={`w-full border rounded-lg px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400 ${errors.email ? 'border-red-400 bg-red-50' : 'border-gray-300'
                         }`}
                     placeholder="Email"
@@ -74,7 +89,7 @@ export default function ErrorRow({ error }: Props) {
             <td className="py-3 pr-4">
                 <input
                     value={age}
-                    onChange={e => setAge(e.target.value)}
+                    onChange={e => handleAgeChange(e.target.value)}
                     className={`w-full border rounded-lg px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400 ${errors.age ? 'border-red-400 bg-red-50' : 'border-gray-300'
                         }`}
                     placeholder="Age"

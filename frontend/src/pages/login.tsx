@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { login } from "../services/api";
+import { z } from 'zod'
 
 export default function Login() {
     const [email, setEmail] = useState("")
@@ -10,8 +11,14 @@ export default function Login() {
 
     const handleSubmit = async () => {
         setError("")
-        const res = await login(email, password)
 
+        const parsed = loginSchema.safeParse({ email, password })
+        if(!parsed.success) {
+            setError(parsed.error.issues[0].message)
+            return
+        }
+
+        const res = await login(email, password)
         if (!res.ok) {
             setError(res.message)
             return
@@ -19,6 +26,11 @@ export default function Login() {
 
         navigate("/")
     }
+
+    const loginSchema = z.object({
+        email: z.string().email('Email invalido'),
+        password: z.string().min(1, 'Password requerido')
+    })
 
     return (
         <div className="min-h-screen bg-gray-50 flex items-center justify-center">
