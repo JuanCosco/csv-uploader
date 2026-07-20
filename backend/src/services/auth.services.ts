@@ -2,6 +2,7 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import { findUserByEmail } from "../repositories/auth.repository";
 import { LoginInput } from "../schemas/auth.schemas";
+import { env } from "../config/env";
 
 export const loginService = async ({ email, password }: LoginInput) => {
     console.log(`[AUTH] Login attempt - email: ${email}`);
@@ -25,7 +26,7 @@ export const loginService = async ({ email, password }: LoginInput) => {
 
     const token = jwt.sign(
         { id: user.id, role: user.role },
-        process.env.JWT_SECRET as string,
+        env.JWT_SECRET,
         { expiresIn: "8h" },
     );
 

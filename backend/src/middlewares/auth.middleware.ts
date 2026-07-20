@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import jwt from "jsonwebtoken";
+import { env } from "../config/env";
 
 interface JwtPayload {
     id: number,
@@ -21,7 +22,7 @@ export const requireAdmin = (req: Request, res: Response, next: NextFunction) =>
     console.log('[MIDDLEWARE] Token found - verifying...');
 
     try {
-        const payload = jwt.verify(token, process.env.JWT_SECRET as string) as JwtPayload;
+        const payload = jwt.verify(token, env.JWT_SECRET) as JwtPayload;
 
         console.log(`[MIDDLEWARE] Role: ${payload.role} - access granted`);
 
